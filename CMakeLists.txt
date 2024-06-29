@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
 project(MyOpenGLProject)
 
-# find_package(glfw REQUIRED)
-add_subdirectory(glfw-3.4)
-
+find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 
-add_executable(my_project main.cpp)
+include_directories (${CMAKE_SOURCE_DIR}/include)
 
-target_link_libraries(my_project PRIVATE glfw OpenGL::GL)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp ${CMAKE_SOURCE_DIR}/src/*.c)
+
+add_executable(MyOpenGLProject ${SOURCES})
+
+target_link_libraries(MyOpenGLProject glfw OpenGL::GL)
