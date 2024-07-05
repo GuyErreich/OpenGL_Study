@@ -2,8 +2,9 @@
 /build/
 
 # VSCode specific files
-/.vscode/
-/.vscode/
+.vscode/*
+!c_cpp_properties.json
+!launch.json
 
 #Conan generated files
 CMakeUserPresets.json
