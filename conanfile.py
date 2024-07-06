@@ -34,5 +34,5 @@ class MyOpenGLProject(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(variables = {"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"})
         cmake.build(cli_args=["--clean-first"])
