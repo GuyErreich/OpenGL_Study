@@ -18,6 +18,7 @@ class MyOpenGLProject(ConanFile):
     def requirements(self):
         self.requires("glfw/3.4")
         self.requires("opengl/system")
+        self.requires("stb/cci.20240213")
 
     def build_requirements(self):
         if self.settings.os != "Windows":
