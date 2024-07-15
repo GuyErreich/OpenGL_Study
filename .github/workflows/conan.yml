@@ -17,6 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: actions
+      - name: Installing Conan
         run: |
           pip install conan
+          conan version
+      - name: Conan Initialization
+        run: |
+          conan profile detect
+          conan profile show
+          conan install . --build=missing
+      - name: Conan Build
+        run: |
+          conan build .
