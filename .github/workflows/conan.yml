@@ -1,21 +1,22 @@
 name: C/C++ CI with conan
 
 on:
-	push:
-		branches-ignore:
-			- master
-			- main
-	pull_request:
-		branches:
-			- master
-			- main
-	workflow_dispatch:
+  push:
+    branches-ignore:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
     
 
 jobs:
-	build:
-		runs-on: ubuntu-latest
-			steps:
-				- uses: actions/checkout@v4
-				- name: actions
-					run: pip install conan
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: actions
+        run: |
+          pip install conan
