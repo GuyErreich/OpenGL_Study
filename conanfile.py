@@ -14,7 +14,7 @@ class MyOpenGLProject(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
     generators = "CMakeToolchain"
-
+   
     def requirements(self):
         self.requires("glfw/3.4")
         self.requires("opengl/system")
