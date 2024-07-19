@@ -1,4 +1,4 @@
-.PHONY: init conan_init conan_install conan_build conan_build_and_install
+.PHONY: init conan_init conan_install conan_build conan_build_and_install exec tests
 
 init: 
 	sudo apt update
@@ -17,3 +17,9 @@ conan_build:
 	conan build .
 
 conan_install_and_build: conan_install conan_build
+
+exec:
+	./build/Debug/MyOpenGLProject
+
+tests:
+	./build/Debug/tests

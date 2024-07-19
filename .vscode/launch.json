@@ -11,6 +11,16 @@
             "program": "${workspaceFolder}/build/Debug/MyOpenGLProject",
             "args": [],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "Test",
+            "program": "${workspaceFolder}/build/Debug/tests",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build"
         }
-    ]
+    ],
+    
 }

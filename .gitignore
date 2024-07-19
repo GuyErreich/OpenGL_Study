@@ -5,6 +5,7 @@
 .vscode/*
 !c_cpp_properties.json
 !launch.json
+!tasks.json
 
 #Conan generated files
 CMakeUserPresets.json

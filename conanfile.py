@@ -22,7 +22,8 @@ class MyOpenGLProject(ConanFile):
 
     def build_requirements(self):
         if self.settings.os != "Windows":
-            self.tool_requires('cmake/3.29.6')
+            self.tool_requires('cmake/[~3]')
+        self.test_requires('catch2/[~3]')
 
     def layout(self):
         cmake_layout(self)
