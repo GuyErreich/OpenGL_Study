@@ -1,5 +1,12 @@
 .PHONY: init conan_init conan_install conan_build conan_build_and_install exec tests
 
+# Default build type
+BUILD_TYPE ?= $(CHECK_BUILD_DIR_BY_TYPE)
+
+BUILD_DIR = ./build/$(CHECK_BUILD_DIR_BY_TYPE)
+
+CHECK_BUILD_DIR_BY_TYPE := $(if $(wildcard ./build/Debug),Debug,Release)
+
 init: 
 	sudo apt update
 	sudo apt install pipx
@@ -19,7 +26,7 @@ conan_build:
 conan_install_and_build: conan_install conan_build
 
 exec:
-	./build/Debug/MyOpenGLProject
+	$(BUILD_DIR)/MyOpenGLProject
 
 tests:
-	./build/Debug/tests
+	$(BUILD_DIR)/tests

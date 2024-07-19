@@ -26,3 +26,6 @@ jobs:
       - name: Conan Build
         run: |
            make conan_build
+      - name: Unit Tests
+        run: |
+           make tests
