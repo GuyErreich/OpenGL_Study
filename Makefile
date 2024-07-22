@@ -7,9 +7,11 @@ BUILD_DIR = ./build/$(CHECK_BUILD_DIR_BY_TYPE)
 
 CHECK_BUILD_DIR_BY_TYPE := $(if $(wildcard ./build/Debug),Debug,Release)
 
+PATH := $(PATH):/github/home/.local/bin
+
 init: 
 	sudo apt update
-	sudo apt install pipx
+	sudo apt install -y pipx
 	pipx install conan
 
 conan_init: 

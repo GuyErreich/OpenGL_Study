@@ -15,10 +15,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: 
+      image: ubuntu:latest
+      env: 
+        DISPLAY: :99
     steps:
       - uses: actions/checkout@v4
       - name: Installing Conan
         run: |
+          apt update
+          apt install -y make sudo
           make init
       - name: Conan Initialization
         run: |
@@ -31,9 +37,7 @@ jobs:
           DISPLAY_PORT: :99
         run: |
           sudo apt-get install -y libgl1-mesa-dev xorg-dev xvfb mesa-utils
-          sudo Xvfb $DISPLAY_PORT -screen 0 1024x768x24 &
-          echo "DISPLAY=${{ env.DISPLAY_PORT }}" >> $GITHUB_ENV
-          echo "${{ env.DISPLAY }}"
+          sudo Xvfb $DISPLAY -screen 0 1024x768x24 &
           # Wait a bit to ensure Xvfb has started
           sleep 30
           glxinfo
