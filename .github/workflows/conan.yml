@@ -38,4 +38,4 @@ jobs:
       - name: Unit Tests
         run: |
           export DISPLAY=:99
-          make tests ARGS='-s -r console'
+          make tests ARGS='-s -r junit'
