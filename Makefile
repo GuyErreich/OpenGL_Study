@@ -29,4 +29,4 @@ exec:
 	$(BUILD_DIR)/MyOpenGLProject
 
 tests:
-	$(BUILD_DIR)/tests
+	$(BUILD_DIR)/tests $(ARGS)
