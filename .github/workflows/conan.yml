@@ -25,7 +25,14 @@ jobs:
           make conan_init
       - name: Conan Build
         run: |
-           make conan_build
+          make conan_build
+      - name: Debug Virtaul display
+        run: |
+          sudo apt-get install -y libgl1-mesa-dev xorg-dev xvfb
+          sudo Xvfb :99 -screen 0 1024x768x24 &
+          export DISPLAY=:99
+          glxinfo
+          glxgears
       - name: Unit Tests
         run: |
-           make tests
+          make tests
