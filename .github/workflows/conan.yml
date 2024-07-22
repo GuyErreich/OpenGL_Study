@@ -34,7 +34,7 @@ jobs:
           # Wait a bit to ensure Xvfb has started
           sleep 30
           glxinfo
-          glxgears
+          timeout 10s glxgears
       - name: Unit Tests
         run: |
           make tests
