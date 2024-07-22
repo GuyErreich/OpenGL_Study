@@ -37,4 +37,9 @@ jobs:
           timeout 10s glxgears || true
       - name: Unit Tests
         run: |
+          export DISPLAY=:99
+          # Wait a bit to ensure Xvfb has started
+          sleep 30
+          glxinfo
+          timeout 10s glxgears ||
           make tests
