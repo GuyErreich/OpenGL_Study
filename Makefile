@@ -11,7 +11,7 @@ PATH := $(PATH):/github/home/.local/bin
 
 init: 
 	sudo apt update
-	sudo apt install -y pipx
+	sudo apt install -y pipx gcc g++
 	pipx install conan
 
 conan_init: 
