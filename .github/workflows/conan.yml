@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: ubuntu:latest
+      image: gcc:latest
       env: 
         DISPLAY: :99
     steps:
