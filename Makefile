@@ -9,7 +9,7 @@ CHECK_BUILD_DIR_BY_TYPE := $(if $(wildcard ./build/Debug),Debug,Release)
 
 init: 
 	sudo apt update
-	sudo apt install -y pipx gcc g++
+	sudo apt install -y pipx
 	pipx install conan
 
 conan_init: 

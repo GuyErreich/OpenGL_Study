@@ -15,28 +15,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # container: 
-    #   image: gcc:latest
-    #   env: 
-    #     DISPLAY: :99
+    container: 
+      image: gcc:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Installing Conan
+      - name: Init Env
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           echo "DISPLAY=:99" >> $GITHUB_ENV
+      - name: Installing Conan
+        run: |
           apt update
           apt install -y make sudo
           make init
-      - name: Conan Initialization
+      - name: Conan Init
         run: |
           make conan_init
       - name: Conan Build
         run: |
           make conan_build
       - name: Debug Virtaul display
-        env:
-          DISPLAY_PORT: :99
         run: |
           sudo apt-get install -y libgl1-mesa-dev xorg-dev xvfb mesa-utils
           sudo Xvfb $DISPLAY -screen 0 1024x768x24 &
