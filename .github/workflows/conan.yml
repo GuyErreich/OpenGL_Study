@@ -19,6 +19,7 @@ jobs:
       image: gcc:latest
       env: 
         DISPLAY: :99
+        PATH : $PATH:/github/home/.local/bin
     steps:
       - uses: actions/checkout@v4
       - name: Installing Conan
@@ -44,4 +45,4 @@ jobs:
           timeout 10s glxgears || true
       - name: Unit Tests
         run: |
-          make tests ARGS='-s -r xml'
+          make tests ARGS='-s -r console'
