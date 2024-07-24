@@ -19,7 +19,6 @@ jobs:
       image: gcc:latest
       env: 
         DISPLAY: :99
-        PATH : $PATH:/github/home/.local/bin
     steps:
       - uses: actions/checkout@v4
       - name: Installing Conan
@@ -27,6 +26,8 @@ jobs:
           apt update
           apt install -y make sudo
           make init
+          pipx ensurepath
+          source ~/.bashrc
       - name: Conan Initialization
         run: |
           make conan_init
