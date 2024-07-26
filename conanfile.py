@@ -1,6 +1,7 @@
 import os
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
+from conan.tools.system.package_manager import Apt
 from conan.tools.files import copy
 
 class MyOpenGLProject(ConanFile):
@@ -19,10 +20,13 @@ class MyOpenGLProject(ConanFile):
         self.requires("glfw/3.4")
         self.requires("opengl/system")
         self.requires("stb/cci.20240213")
+        self.requires('catch2/[~3]')
 
     def build_requirements(self):
         if self.settings.os != "Windows":
-            self.tool_requires('cmake/3.29.6')
+            apt = Apt(self)
+            apt.install(["cmake"])
+
 
     def layout(self):
         cmake_layout(self)
@@ -35,5 +39,5 @@ class MyOpenGLProject(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(variables = {"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"})
+        cmake.configure(variables={"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"})
         cmake.build(cli_args=["--clean-first"])
