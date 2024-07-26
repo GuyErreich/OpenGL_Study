@@ -17,12 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: gcc:latest
+      env:
+        DISPLAY: :99
     steps:
       - uses: actions/checkout@v4
       - name: Init Env
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-          echo "DISPLAY=:99" >> $GITHUB_ENV
       - name: Installing Conan
         run: |
           apt update
@@ -34,12 +35,12 @@ jobs:
       - name: Conan Build
         run: |
           make conan_build
-      - name: Debug Virtaul display
+      - name: Set Virtaul Display
         run: |
           sudo apt-get install -y libgl1-mesa-dev xorg-dev xvfb mesa-utils
           sudo Xvfb $DISPLAY -screen 0 1024x768x24 &
           # Wait a bit to ensure Xvfb has started
-          sleep 30
+          sleep 10
           glxinfo
           timeout 10s glxgears || true
       - name: Unit Tests
