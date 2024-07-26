@@ -10,7 +10,8 @@
             "name": "Run",
             "program": "${workspaceFolder}/build/Debug/MyOpenGLProject",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build"
         },
         {
             "type": "cppdbg",

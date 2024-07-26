@@ -5,7 +5,7 @@
 			"label": "build",
 			"detail": "run conan build .",
 			"type": "shell",
-			"command": "make conan_build",
+			"command": "make build",
 			"group": {
 				"kind": "build",
 				"isDefault": true
