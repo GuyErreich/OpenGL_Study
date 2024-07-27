@@ -5,12 +5,13 @@
 
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, Shader *shader);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -57,10 +58,10 @@ int main()
     // ------------------------------------------------------------------
     float vertices[] = {
         // positions          // colors           // texture coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   0.55f, 0.55f,   // top right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   0.55f, 0.45f,   // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.45f, 0.45f,   // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.45f, 0.55f    // top left 
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, .0f,   // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   .0f, .0f,   // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   .0f, 1.0f    // top left 
     };
 
     unsigned int indices[] = {  
@@ -152,7 +153,7 @@ int main()
     {
         // input
         // -----
-        processInput(window);
+        processInput(window, &ourShader);
 
         // render
         // ------
@@ -189,10 +190,25 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow *window, Shader *shader)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+
+    int location = glGetUniformLocation(shader->ID, "mixValue");
+    float amount;
+    glGetUniformfv(shader->ID, location, &amount);
+
+    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        amount += 0.001f; 
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        amount -= 0.001f;
+    }
+
+    amount = std::clamp<float>(amount, .0f, 1.0f);
+    shader->setFloat("mixValue", amount);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
