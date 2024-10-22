@@ -16,3 +16,5 @@ TEST_CASE_METHOD(OpenGLFixture, "Shaders are computed", "[shader]") {
         FAIL("Unknown exception was thrown");
     }
 }
+
+//TODO: create tests that check the transformations are working properly

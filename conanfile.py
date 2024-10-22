@@ -19,6 +19,7 @@ class MyOpenGLProject(ConanFile):
     def requirements(self):
         self.requires("glfw/3.4")
         self.requires("opengl/system")
+        self.requires("glm/cci.20230113")
         self.requires("stb/cci.20240213")
         self.requires('catch2/[~3]')
 
@@ -35,6 +36,8 @@ class MyOpenGLProject(ConanFile):
         deps = CMakeDeps(self)
         deps.set_property("opengl", "cmake_file_name", "OpenGL")
         deps.set_property("opengl", "cmake_target_name", "OpenGL::GL")
+        deps.set_property("glm", "cmake_file_name", "GLM")
+        deps.set_property("glm", "cmake_target_name", "GLM::GLM")
         deps.generate()
 
     def build(self):
