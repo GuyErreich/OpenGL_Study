@@ -1,0 +1,46 @@
+{
+    // Use built-in C++ extension with clang (since gcc=clang on macOS)
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.default.cppStandard": "gnu++17",
+    "C_Cpp.default.intelliSenseMode": "macos-clang-arm64",
+    
+    // Use our compile_commands.json
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json",
+    
+    // File associations for C/C++
+    "files.associations": {
+        "*.h": "c",
+        "*.hpp": "cpp", 
+        "*.cpp": "cpp",
+        "*.c": "c"
+    },
+    
+    // Editor settings
+    "editor.semanticHighlighting.enabled": true,
+    "editor.suggest.insertMode": "replace",
+    
+    // C++ formatting with 4-space indentation
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    
+    // Use clang-format for C++ files
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools", 
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    
+    // clang-format specific settings
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.clang_format_style": "file"
+}

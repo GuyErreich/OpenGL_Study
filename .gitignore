@@ -6,9 +6,13 @@
 !c_cpp_properties.json
 !launch.json
 !tasks.json
+!settings.json
+
+# Keep clang-format configuration
+!.clang-format
 
 #Conan generated files
 CMakeUserPresets.json
 /external/
-
+compile_commands.json
 
