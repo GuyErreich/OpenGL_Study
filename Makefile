@@ -20,8 +20,11 @@ install:
 build:
 	conan build . $(ARGS)
 
-run:
+run: build
 	$(BUILD_DIR)/MyOpenGLProject
 
 tests:
 	$(BUILD_DIR)/tests $(ARGS)
+
+clean:
+	yes | conan remove '*'
